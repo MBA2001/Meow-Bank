@@ -1,7 +1,6 @@
 const {getFirestore,doc,setDoc,getDoc,getDocs,collection,updateDoc,FieldValue} = require('firebase/firestore')
 const firestore = getFirestore();
 const generateString = require("../util/generateString");
-const {v4} = require('uuid');
 
 
 exports.addAccount = async (req,res)=>{
