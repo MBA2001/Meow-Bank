@@ -15,5 +15,11 @@
   "bugs": {
     "url": "https://github.com/MBA2001/Meow-Bank/issues"
   },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.19.2",
+    "firebase": "^10.12.4",
+    "body-parser": "^1.20.2"
+  },
   "homepage": "https://github.com/MBA2001/Meow-Bank#readme"
 }
