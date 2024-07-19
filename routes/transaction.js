@@ -4,6 +4,24 @@ const firestore = getFirestore();
 const generateString = require("../util/generateString");
 
 
+let updateCustomerNetWorth = async (customerName)=>{
+    try{
+        net =0;
+        let customerAccounts = [];
+        let documents = await getDocs(collection(firestore,"accounts"));
+        let list = documents.docs.map(d=>d.data());
+        list.forEach(account => {
+            if(account.customerName == customerName){
+                net+=account.accountBalance;
+            }
+        });
+        await updateDoc(doc(firestore,"customers",customerName),{netWorth: net});
+        
+    }catch(err){
+    }
+}
+
+
 exports.addTransaction = async (req,res)=>{
     
     let newTransaction = {
@@ -42,6 +60,8 @@ exports.addTransaction = async (req,res)=>{
                 let data2 = document2.data();
                 await updateDoc(doc(firestore,"accounts",req.body.recieverNumber),{accountBalance: Number(data2.accountBalance)+Number(newTransaction.amount),numberOfTransactions: data.numberOfTransactions+1});
             }
+
+            await updateCustomerNetWorth(req.body.customerName);
             return res.status(200).json({message:"success"});
 
     }catch(err){
