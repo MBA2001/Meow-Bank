@@ -55,7 +55,7 @@ app.get('/getalltransactions/',getAllTransactions);
 app.get('/gettransactionbyaccount/:accountNumber',getAllTransactionsByAccount);
 app.get('/gettransactionbycustomer/:customerName',getAllTransactionsByCustomer);
 
-const port = process.env.PORT || 8080
+const port = parseInt(process.env.PORT) || 8080
 app.listen(port, () => {
   console.log(`Bank app listening on port ${port}`)
 })
