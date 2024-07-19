@@ -18,7 +18,7 @@ var bodyParser = require('body-parser')
 var jsonParser = bodyParser.json()
 
 //routes
-const {signin,signup,getAll,getEmployeeByEmail} = require("./routes/employee");
+const {signin,signup,getAll,getEmployeeByEmail,signOut} = require("./routes/employee");
 const {addCustomer,getSingleCustomer,getAllCustomers} = require("./routes/customer");
 const {addAccount,getAccount,getAllAccounts,getAllAccountsByCustomer} = require("./routes/account");
 const {addTransaction,getTransaction,getAllTransactions,getAllTransactionsByAccount,getAllTransactionsByCustomer} = require("./routes/transaction");
@@ -35,7 +35,7 @@ app.post('/login',jsonParser,signin);
 app.post('/signup',jsonParser,signup);
 app.get('/getall',getAll);
 app.get('/getByEmail/:email',getEmployeeByEmail);
-
+app.get('/signout',signOut);
 //customer
 app.post('/addcustomer',jsonParser, addCustomer);
 app.get('/getcustomer/:name',jsonParser,getSingleCustomer);
