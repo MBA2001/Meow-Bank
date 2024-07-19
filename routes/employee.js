@@ -93,4 +93,18 @@ exports.signOut = async (req,res)=>{
     await signOut(getAuth());
 }
 
+exports.getEmployeeByEmail = async (req,res) =>{
+  let documents = await getDocs(collection(firestore,"employees"));
+  let list = documents.docs.map(d => d.data());
+  let employee;
+  list.forEach(item => {
+    if(item.email === req.params.email){
+      employee = item;
+    }
+  })
+
+  if(employee){
+    return res.status(200).json(employee);
+  }else return res.status(404).send("not found");
+}
 

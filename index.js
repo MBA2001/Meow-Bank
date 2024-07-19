@@ -18,7 +18,7 @@ var bodyParser = require('body-parser')
 var jsonParser = bodyParser.json()
 
 //routes
-const {signin,signup,getAll} = require("./routes/employee");
+const {signin,signup,getAll,getEmployeeByEmail} = require("./routes/employee");
 const {addCustomer,getSingleCustomer,getAllCustomers} = require("./routes/customer");
 const {addAccount,getAccount,getAllAccounts,getAllAccountsByCustomer} = require("./routes/account");
 const {addTransaction,getTransaction,getAllTransactions,getAllTransactionsByAccount,getAllTransactionsByCustomer} = require("./routes/transaction");
@@ -33,8 +33,8 @@ app.use(cors());
 //employees
 app.post('/login',jsonParser,signin);
 app.post('/signup',jsonParser,signup);
-app.get('/getall',jsonParser,getAll);
-
+app.get('/getall',getAll);
+app.get('/getByEmail/:email',getEmployeeByEmail);
 
 //customer
 app.post('/addcustomer',jsonParser, addCustomer);
