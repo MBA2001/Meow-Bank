@@ -1,19 +1,19 @@
 {
-    "name": "meow bank",
-    "description": "Simple bank app",
-    "version": "1.0.0",
-    "private": true,
-    "main": "main.js",
-    "type": "module",
-    "scripts": {
-      "start": "node index.js"
-    },
-    "engines": {
-      "node": ">=16.0.0"
-    },
-    "author": "Google LLC",
-    "license": "Apache-2.0",
-    "dependencies": {
-      "express": "^4.17.1"
-    }
-  }
+  "name": "meow-bank",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MBA2001/Meow-Bank.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MBA2001/Meow-Bank/issues"
+  },
+  "homepage": "https://github.com/MBA2001/Meow-Bank#readme"
+}
