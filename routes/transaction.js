@@ -36,7 +36,9 @@ exports.addTransaction = async (req,res)=>{
     }
 
     try{
-
+            if(Number(newTransaction.amount) < 0){
+                return res.status(400).json({error:'number less than zero'});
+            }
             let checkDoc = await getDoc(doc(firestore,"transactions",newTransaction.transactionId));
             if(checkDoc.exists()){
                 newTransaction.accountNumber = generateString(13)

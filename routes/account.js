@@ -14,7 +14,7 @@ exports.addAccount = async (req,res)=>{
     }
 
     try{
-
+            if(newAccount.accountBalance <0) return res.status(400).json({error:"number is less than zero"});
             let checkDoc = await getDoc(doc(firestore,"accounts",newAccount.accountNumber));
             if(checkDoc.exists()){
               newAccount.accountNumber = generateString(8)

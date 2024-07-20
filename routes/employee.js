@@ -89,8 +89,13 @@ exports.getAll = async (req,res)=>{
 }
 
 
-exports.signOut = async (req,res)=>{
-    await signOut(getAuth());
+exports.signOut = (req,res)=>{
+    const auth = getAuth();
+    signOut(auth).then(() => {
+      return res.status(200).json({message:"success"})
+    }).catch((error) => {
+      return res.status(400).json({error:error.message});
+    });
 }
 
 exports.getEmployeeByEmail = async (req,res) =>{
