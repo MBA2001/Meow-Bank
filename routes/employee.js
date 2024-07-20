@@ -116,7 +116,7 @@ exports.getEmployeeByEmail = async (req,res) =>{
 exports.deleteEmployee = async (req,res) => {
   try{
 
-    await deleteDoc(doc(firestore,"employees",req.body.name));
+    await deleteDoc(doc(firestore,"employees",req.params.name));
     return res.status(200).json({message:'success'});
   }catch(err){
     return res.status(400).json(err);

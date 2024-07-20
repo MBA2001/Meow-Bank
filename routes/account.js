@@ -80,8 +80,10 @@ exports.getAllAccountsByCustomer = async (req,res) => {
 
 exports.deleteAccount = async(req,res) => {
     try{
-        await deleteDoc(doc(firestore,"accounts",req.body.accountNumber));
-        updateCustomerNetWorth(req.body.customerName);
+        let doc = await getDoc(doc(firestore,"accounts",req.params.accountNumber));
+        let getcustomer = await getDoc(doc(firestore,"customers", doc.data().customerName));
+        await deleteDoc(doc(firestore,"accounts",req.params.accountNumber));
+        updateCustomerNetWorth(getcustomer.data());
         res.status(200).json({message:'success'});
     }catch(err){
         return res.status(400).json(err);

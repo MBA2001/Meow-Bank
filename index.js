@@ -36,16 +36,20 @@ app.post('/signup',jsonParser,signup);
 app.get('/getall',getAll);
 app.get('/getByEmail/:email',getEmployeeByEmail);
 app.get('/signout',signOut);
+app.delete('/delete/:name',deleteEmployee);
+
 //customer
 app.post('/addcustomer',jsonParser, addCustomer);
 app.get('/getcustomer/:name',jsonParser,getSingleCustomer);
 app.get('/getallcustomers',jsonParser,getAllCustomers);
+app.delete('/deletecustomer/:name',deleteCustomer);
 
 //account
 app.post('/addaccount',jsonParser, addAccount);
 app.get('/getaccount/:accountNumber',jsonParser,getAccount);
 app.get('/getallaccounts',jsonParser,getAllAccounts);
 app.get('/getbycustomer/:name',jsonParser,getAllAccountsByCustomer);
+app.delete('/deleteaccount/:accountNumber',deleteAccount);
 
 
 //transactions

@@ -60,7 +60,7 @@ exports.getAllCustomers = async (req,res)=>{
 
 exports.deleteCustomer = async(req,res) => {
     try{
-        await deleteDoc(doc(firestore,"customers",req.body.name));
+        await deleteDoc(doc(firestore,"customers",req.params.name));
         res.status(200).json({message:'success'});
     }catch(err){
         return res.status(400).json(err);
