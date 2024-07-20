@@ -1,4 +1,4 @@
-const {getFirestore,doc,setDoc,getDoc,getDocs,collection,updateDoc,FieldValue} = require('firebase/firestore')
+const {getFirestore,doc,setDoc,getDoc,getDocs,collection,updateDoc,FieldValue,deleteDoc} = require('firebase/firestore')
 const firestore = getFirestore();
 const generateString = require("../util/generateString");
 const {updateCustomerNetWorth} = require("./transaction");
@@ -80,12 +80,12 @@ exports.getAllAccountsByCustomer = async (req,res) => {
 
 exports.deleteAccount = async(req,res) => {
     try{
-        let doc = await getDoc(doc(firestore,"accounts",req.params.accountNumber));
-        let getcustomer = await getDoc(doc(firestore,"customers", doc.data().customerName));
+        let document = await getDoc(doc(firestore,"accounts",req.params.accountNumber));
+        let getcustomer = await getDoc(doc(firestore,"customers", document.data().customerName));
         await deleteDoc(doc(firestore,"accounts",req.params.accountNumber));
-        updateCustomerNetWorth(getcustomer.data());
+        updateCustomerNetWorth(getcustomer.data().name);
         res.status(200).json({message:'success'});
     }catch(err){
-        return res.status(400).json(err);
+        return res.status(400).json(err.message);
     }
 }
