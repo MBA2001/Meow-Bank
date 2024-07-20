@@ -9,7 +9,7 @@ const {
 } = require("firebase/auth") ;
 
 const {validateLogin,validateSignup} = require("../util/validation");
-const {getFirestore,doc,setDoc,getDoc,collection,getDocs} = require('firebase/firestore')
+const {getFirestore,doc,setDoc,getDoc,collection,getDocs,deleteDoc} = require('firebase/firestore')
 const firestore = getFirestore();
 
 
@@ -45,7 +45,7 @@ exports.signup = async(req,res)=>{
       newUser.createdAt = new Date().toISOString();
       await setDoc(doc(firestore,"employees",newUser.name),newUser);
       
-      return res.json({token});
+      return res.status(200).json({token});
     }catch(err){
       if(err.message == "Firebase: Error (auth/email-already-in-use)."){
         return res.status(400).json({error:"email already in use"});
@@ -113,3 +113,12 @@ exports.getEmployeeByEmail = async (req,res) =>{
   }else return res.status(404).send("not found");
 }
 
+exports.deleteEmployee = async (req,res) => {
+  try{
+
+    await deleteDoc(doc(firestore,"employees",req.body.name));
+    return res.status(200).json({message:'success'});
+  }catch(err){
+    return res.status(400).json(err);
+  }
+}

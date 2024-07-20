@@ -4,7 +4,7 @@ const firestore = getFirestore();
 const generateString = require("../util/generateString");
 
 
-let updateCustomerNetWorth = async (customerName)=>{
+exports.updateCustomerNetWorth = async (customerName)=>{
     try{
         net =0;
         let customerAccounts = [];

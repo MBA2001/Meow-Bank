@@ -1,4 +1,4 @@
-const {getFirestore,doc,setDoc,getDoc,getDocs,collection} = require('firebase/firestore')
+const {getFirestore,doc,setDoc,getDoc,getDocs,collection, deleteDoc} = require('firebase/firestore')
 const firestore = getFirestore();
 const {checkEmail} = require("../util/validation");
 
@@ -55,6 +55,15 @@ exports.getAllCustomers = async (req,res)=>{
         return res.status(200).json(list);
     }catch(err){
         return res.status(400).json({error:err.message});
+    }
+}
+
+exports.deleteCustomer = async(req,res) => {
+    try{
+        await deleteDoc(doc(firestore,"customers",req.body.name));
+        res.status(200).json({message:'success'});
+    }catch(err){
+        return res.status(400).json(err);
     }
 }
 

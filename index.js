@@ -18,9 +18,9 @@ var bodyParser = require('body-parser')
 var jsonParser = bodyParser.json()
 
 //routes
-const {signin,signup,getAll,getEmployeeByEmail,signOut} = require("./routes/employee");
-const {addCustomer,getSingleCustomer,getAllCustomers} = require("./routes/customer");
-const {addAccount,getAccount,getAllAccounts,getAllAccountsByCustomer} = require("./routes/account");
+const {signin,signup,getAll,getEmployeeByEmail,signOut,deleteEmployee} = require("./routes/employee");
+const {addCustomer,getSingleCustomer,getAllCustomers,deleteCustomer} = require("./routes/customer");
+const {addAccount,getAccount,getAllAccounts,getAllAccountsByCustomer,deleteAccount} = require("./routes/account");
 const {addTransaction,getTransaction,getAllTransactions,getAllTransactionsByAccount,getAllTransactionsByCustomer} = require("./routes/transaction");
 //app initialization
 const app = express()
